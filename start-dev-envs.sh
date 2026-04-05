@@ -1,6 +1,7 @@
 #!/bin/bash
 
-TARGET_DIR="./"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TARGET_DIR="$ROOT_DIR"
 FE_PATH=''
 BE_PATH='netbank-backend-spring'
 SESSIONNAME="netbank-app"
@@ -29,6 +30,7 @@ if [ $? != 0 ]; then
 
     # In second pane (bottom), cd to be and run Django server
     tmux send-keys -t $SESSIONNAME:0.0 "cd $TARGET_DIR/$BE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:0.0 "set -a; source $ROOT_DIR/.env; set +a" C-m
     tmux send-keys -t $SESSIONNAME:0.0 "./mvnw spring-boot:run" C-m
 
     # In first pane (top), cd to fe and run ng serve
@@ -38,7 +40,6 @@ if [ $? != 0 ]; then
     # Back-end editor window
     tmux new-window -n Back-end -t $SESSIONNAME
     tmux send-keys -t $SESSIONNAME:1 "cd $TARGET_DIR/$BE_PATH" C-m
-    tmux send-keys -t $SESSIONNAME:1 "source .venv/bin/activate" C-m
     tmux send-keys -t $SESSIONNAME:1 "nvim ." C-m
 
     # Front-end editor window
