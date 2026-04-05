@@ -30,7 +30,7 @@ if [ $? != 0 ]; then
 
     # In second pane (bottom), cd to be and run Django server
     tmux send-keys -t $SESSIONNAME:0.0 "cd $TARGET_DIR/$BE_PATH" C-m
-    tmux send-keys -t $SESSIONNAME:0.0 "set -a; source $ROOT_DIR/.env; set +a" C-m
+    tmux send-keys -t $SESSIONNAME:0.0 "set -a; source .env; set +a" C-m
     tmux send-keys -t $SESSIONNAME:0.0 "./mvnw spring-boot:run" C-m
 
     # In first pane (top), cd to fe and run ng serve
