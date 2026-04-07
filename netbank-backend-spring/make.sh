@@ -5,7 +5,7 @@
 # ==========================================
 
 # 1. Settings (To be modified for the "production" project)
-BASE_PACKAGE="com.example.demo"
+BASE_PACKAGE="dev.kabastack.netbank"
 BASE_DIR="src/main/java/$(echo $BASE_PACKAGE | tr '.' '/')"
 
 # 2. Input validation

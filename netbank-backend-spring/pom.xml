@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.kabastack</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>netbank</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>netbank-backend</name>
 	<description/>
@@ -68,6 +68,14 @@
                     <artifactId>postgresql</artifactId>
                     <scope>runtime</scope>
                 </dependency>
+                <dependency>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-flyway</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-database-postgresql</artifactId>
+                </dependency>
 	</dependencies>
 
 	<build>
@@ -120,6 +128,13 @@
 					</execution>
 				</executions>
 			</plugin>
+                        <plugin>
+                            <groupId>org.flywaydb</groupId>
+                            <artifactId>flyway-maven-plugin</artifactId>
+                            <configuration>
+                                <cleanDisabled>false</cleanDisabled>
+                            </configuration>
+                        </plugin>
 		</plugins>
 	</build>
 

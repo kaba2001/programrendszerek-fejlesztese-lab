@@ -1,0 +1,15 @@
+CREATE TYPE user_role AS ENUM ('USER', 'ADMIN');
+CREATE TYPE user_status AS ENUM ('PENDING', 'ACTIVE', 'SUSPENDED');
+
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    role user_role NOT NULL DEFAULT 'USER',
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    is_active BOOLEAN NOT NULL DEFAULT false,
+    status user_status NOT NULL DEFAULT 'PENDING',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
