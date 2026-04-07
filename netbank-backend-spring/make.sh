@@ -33,14 +33,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.Data;
+import java.util.UUID;
 
 @Data
 @Entity
 public class ${CLASS_NAME} {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
 }
 EOF
@@ -52,9 +53,10 @@ package ${BASE_PACKAGE}.${FEATURE_NAME};
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import java.util.UUID;
 
 @Repository
-public interface ${CLASS_NAME}Repository extends JpaRepository<${CLASS_NAME}, Long> {
+public interface ${CLASS_NAME}Repository extends JpaRepository<${CLASS_NAME}, UUID> {
 }
 EOF
 echo "  ${CLASS_NAME}Repository.java created."
@@ -96,5 +98,40 @@ public class ${CLASS_NAME}Controller {
 }
 EOF
 echo "  ${CLASS_NAME}Controller.java created."
+
+# 8. Generate Seeder
+cat <<EOF > "$TARGET_DIR/${CLASS_NAME}Seeder.java"
+package ${BASE_PACKAGE}.${FEATURE_NAME};
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+@Component
+public class ${CLASS_NAME}Seeder implements CommandLineRunner {
+
+    private final ${CLASS_NAME}Repository repository;
+
+    public ${CLASS_NAME}Seeder(${CLASS_NAME}Repository repository) {
+        this.repository = repository;
+    }
+
+    @Override
+    public void run(String... args) {
+        if (repository.count() > 0) {
+            System.out.println("[SEEDER] ${CLASS_NAME} table is not empty. Skipping seeding.");
+            return;
+        }
+
+        System.out.println("[SEEDER] Generating initial ${CLASS_NAME} data...");
+
+        // TODO: Generate and save dummy data using Datafaker
+        // ${CLASS_NAME} dummy = new ${CLASS_NAME}();
+        // repository.save(dummy);
+
+        System.out.println("[SEEDER] ${CLASS_NAME} seeding completed.");
+    }
+}
+EOF
+echo "  ${CLASS_NAME}Seeder.java created."
 
 echo "Done! The Neovim LSP will process the new files shortly."
