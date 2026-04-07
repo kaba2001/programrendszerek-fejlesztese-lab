@@ -1,4 +1,4 @@
-package com.example.demo;
+package dev.kabastack.netbank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
