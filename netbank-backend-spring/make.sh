@@ -4,9 +4,10 @@
 # Spring Boot Feature Generator
 # ==========================================
 
-# 1. Settings (To be modified for the "production" project)
+# 1. Settings
 BASE_PACKAGE="dev.kabastack.netbank"
 BASE_DIR="src/main/java/$(echo $BASE_PACKAGE | tr '.' '/')"
+MIGRATION_DIR="src/main/resources/db/migration"
 
 # 2. Input validation
 if [ -z "$1" ]; then
@@ -21,8 +22,9 @@ TARGET_DIR="$BASE_DIR/$FEATURE_NAME"
 
 echo "Starting generation: $CLASS_NAME (into package $FEATURE_NAME)..."
 
-# 3. Create directory
+# 3. Create directories
 mkdir -p "$TARGET_DIR"
+mkdir -p "$MIGRATION_DIR"
 
 # 4. Generate JPA Entity
 cat <<EOF > "$TARGET_DIR/${CLASS_NAME}.java"
@@ -123,15 +125,29 @@ public class ${CLASS_NAME}Seeder implements CommandLineRunner {
         }
 
         System.out.println("[SEEDER] Generating initial ${CLASS_NAME} data...");
-
-        // TODO: Generate and save dummy data using Datafaker
-        // ${CLASS_NAME} dummy = new ${CLASS_NAME}();
-        // repository.save(dummy);
-
+        // TODO: Generate and save dummy data
         System.out.println("[SEEDER] ${CLASS_NAME} seeding completed.");
     }
 }
 EOF
 echo "  ${CLASS_NAME}Seeder.java created."
+
+# 9. Generate Flyway Migration Template
+EXISTING_FILES=$(ls -1 "$MIGRATION_DIR"/V*__*.sql 2>/dev/null | wc -l)
+NEXT_VERSION=$((EXISTING_FILES + 1))
+MIGRATION_FILE="$MIGRATION_DIR/V${NEXT_VERSION}__create_${FEATURE_NAME}s_table.sql"
+
+cat <<EOF > "$MIGRATION_FILE"
+-- Flyway Migration: V${NEXT_VERSION}__create_${FEATURE_NAME}s_table.sql
+-- TODO: Add your CREATE TYPE statements for enums here (if any)
+
+CREATE TABLE ${FEATURE_NAME}s (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    -- TODO: Add your columns here
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+EOF
+echo "  Migration file created at: $MIGRATION_FILE"
 
 echo "Done! The Neovim LSP will process the new files shortly."
