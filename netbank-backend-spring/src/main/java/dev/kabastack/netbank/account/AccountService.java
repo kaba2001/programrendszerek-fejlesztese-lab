@@ -43,6 +43,10 @@ public class AccountService {
     return iban.toString();
   }
 
+  public List<AccountResponse> getAllAccounts() {
+    return repository.findAll().stream().map(this::mapToResponse).toList();
+  }
+
   public List<AccountResponse> getAccountsByUser(User user) {
     return repository.findAllByUser(user).stream().map(this::mapToResponse).toList();
   }

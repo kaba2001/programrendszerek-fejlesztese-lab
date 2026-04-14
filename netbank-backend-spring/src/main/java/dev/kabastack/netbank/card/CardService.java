@@ -21,6 +21,10 @@ public class CardService {
     this.accountRepository = accountRepository;
   }
 
+  public List<CardResponse> getAllCards() {
+    return repository.findAll().stream().map(this::mapToResponse).toList();
+  }
+
   public List<CardResponse> getCardsByUser(User user) {
     return repository.findAllByAccount_User(user).stream().map(this::mapToResponse).toList();
   }
@@ -30,11 +34,7 @@ public class CardService {
     return mapToResponse(card);
   }
 
-  public CardResponse createCard(CardRequest request, User admin) {
-    if (admin.getRole() != User.Role.ADMIN) {
-      throw new RuntimeException("Only admins can create cards.");
-    }
-
+  public CardResponse createCard(CardRequest request) {
     Account account =
         accountRepository
             .findById(request.getAccountId())
@@ -55,6 +55,12 @@ public class CardService {
     card.setCardType(request.getCardType());
 
     return mapToResponse(repository.save(card));
+  }
+
+  public void deleteCard(UUID cardId) {
+    Card card =
+        repository.findById(cardId).orElseThrow(() -> new RuntimeException("Card not found."));
+    repository.delete(card);
   }
 
   public CardResponse updateCardLockStatus(UUID cardId, Boolean isLocked, User user) {

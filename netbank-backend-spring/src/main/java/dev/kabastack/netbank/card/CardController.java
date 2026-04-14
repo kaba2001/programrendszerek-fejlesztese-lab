@@ -28,12 +28,6 @@ public class CardController {
     return ResponseEntity.ok(service.getCardByIdForUser(id, user));
   }
 
-  @PostMapping
-  public ResponseEntity<CardResponse> createCard(
-      @RequestBody CardRequest request, @AuthenticationPrincipal User user) {
-    return ResponseEntity.ok(service.createCard(request, user));
-  }
-
   @PatchMapping("/{id}/status")
   public ResponseEntity<CardResponse> updateCardStatus(
       @PathVariable UUID id,
