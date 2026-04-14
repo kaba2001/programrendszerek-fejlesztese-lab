@@ -42,7 +42,7 @@
       "name": "account",
       "item": [
         {
-          "name": "Index Own Accounts",
+          "name": "Index Accounts",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -69,20 +69,19 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}api/accounts/me",
+              "raw": "{{baseUrl}}api/accounts",
               "host": [
                 "{{baseUrl}}api"
               ],
               "path": [
-                "accounts",
-                "me"
+                "accounts"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "Get account details",
+          "name": "Get Account details",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
           },
@@ -109,13 +108,170 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}api/accounts/130e7a3d-ca33-4db3-8c5b-96510b5c4fd2",
+              "raw": "{{baseUrl}}api/accounts/ab750cd6-c77c-4210-8a6a-7900481c1c1f",
               "host": [
                 "{{baseUrl}}api"
               ],
               "path": [
                 "accounts",
-                "130e7a3d-ca33-4db3-8c5b-96510b5c4fd2"
+                "ab750cd6-c77c-4210-8a6a-7900481c1c1f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "contact",
+      "item": [
+        {
+          "name": "Index Contacts",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/contacts",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Contact details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/contacts/492dadc8-61f5-42da-a83a-e0ec0411543b",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "contacts",
+                "492dadc8-61f5-42da-a83a-e0ec0411543b"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Contact",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"partnerName\": \"Próba jános\",\n    \"partnerAccountNumber\": \"test\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/contacts",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "contacts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Contact",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/contacts/f53456e4-902b-4ef1-9463-d5f15fdedb7a",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "contacts",
+                "f53456e4-902b-4ef1-9463-d5f15fdedb7a"
               ]
             }
           },

@@ -17,7 +17,7 @@ public class AccountController {
     this.service = service;
   }
 
-  @GetMapping("/me")
+  @GetMapping
   public ResponseEntity<List<AccountResponse>> getMyAccounts(@AuthenticationPrincipal User user) {
     return ResponseEntity.ok(service.getAccountsByUser(user));
   }
