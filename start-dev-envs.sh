@@ -42,6 +42,11 @@ if [ $? != 0 ]; then
     tmux send-keys -t $SESSIONNAME:1 "cd $TARGET_DIR/$BE_PATH" C-m
     tmux send-keys -t $SESSIONNAME:1 "nvim ." C-m
 
+
+    tmux new-window -n ClaudeBE -t $SESSIONNAME
+    tmux send-keys -t $SESSIONNAME:2 "cd $TARGET_DIR/$BE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:2 "claude" C-m
+
     # Front-end editor window
     # tmux new-window -n Fron-end -t $SESSIONNAME
     # tmux send-keys -t $SESSIONNAME:2 "cd $TARGET_DIR/$FE_PATH" C-m
