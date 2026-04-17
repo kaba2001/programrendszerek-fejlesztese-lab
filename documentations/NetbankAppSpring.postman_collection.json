@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"email\": \"admin@kabastack.dev\",\n    \"password\": \"password123\"\n}",
+              "raw": "{\n    \"email\": \"admin2@kabastack.dev\",\n    \"password\": \"password123\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -108,13 +108,13 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}api/accounts/ab750cd6-c77c-4210-8a6a-7900481c1c1f",
+              "raw": "{{baseUrl}}api/accounts/29fc1b45-679a-486c-8ee9-31524bbd12cb",
               "host": [
                 "{{baseUrl}}api"
               ],
               "path": [
                 "accounts",
-                "ab750cd6-c77c-4210-8a6a-7900481c1c1f"
+                "29fc1b45-679a-486c-8ee9-31524bbd12cb"
               ]
             }
           },
@@ -402,162 +402,376 @@
       ]
     },
     {
+      "name": "user",
+      "item": [
+        {
+          "name": "Get Own user details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/users/me",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Patch Own user details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"firstName\": \"Kaba\",\n    \"lastName\": \"Benko\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/users/me",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "users",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "admin",
       "item": [
         {
-          "name": "Index Cards Admin",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{apiToken}}",
-                  "type": "string"
+          "name": "cards",
+          "item": [
+            {
+              "name": "Index Cards Admin",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/cards",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "cards"
+                  ]
                 }
-              ]
+              },
+              "response": []
             },
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
+            {
+              "name": "Create Card",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"accountId\": \"a5e345da-3c42-4e2b-8bb4-2b9caed9689d\",\n    \"cardType\": \"VIRTUAL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/cards",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "cards"
+                  ]
                 }
-              }
+              },
+              "response": []
             },
-            "url": {
-              "raw": "{{baseUrl}}api/admin/cards",
-              "host": [
-                "{{baseUrl}}api"
-              ],
-              "path": [
-                "admin",
-                "cards"
-              ]
+            {
+              "name": "Delete Card",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/cards/1f104702-9d2f-49aa-ae19-61fcfa400bc8",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "cards",
+                    "1f104702-9d2f-49aa-ae19-61fcfa400bc8"
+                  ]
+                }
+              },
+              "response": []
             }
-          },
-          "response": []
+          ]
         },
         {
-          "name": "Create Card",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{apiToken}}",
-                  "type": "string"
+          "name": "accounts",
+          "item": [
+            {
+              "name": "Index Accounts Admin",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/accounts",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "accounts"
+                  ]
                 }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n    \"accountId\": \"a5e345da-3c42-4e2b-8bb4-2b9caed9689d\",\n    \"cardType\": \"VIRTUAL\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}api/admin/cards",
-              "host": [
-                "{{baseUrl}}api"
-              ],
-              "path": [
-                "admin",
-                "cards"
-              ]
+              },
+              "response": []
             }
-          },
-          "response": []
+          ]
         },
         {
-          "name": "Delete Card",
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{apiToken}}",
-                  "type": "string"
+          "name": "users",
+          "item": [
+            {
+              "name": "Index Users Admin",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/users",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "users"
+                  ]
                 }
-              ]
+              },
+              "response": []
             },
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
+            {
+              "name": "Delete User",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/users/f4fce86d-d6bc-4cf1-aa31-183ba7c3da08",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "users",
+                    "f4fce86d-d6bc-4cf1-aa31-183ba7c3da08"
+                  ]
                 }
-              }
+              },
+              "response": []
             },
-            "url": {
-              "raw": "{{baseUrl}}api/admin/cards/a5e345da-3c42-4e2b-8bb4-2b9caed9689d",
-              "host": [
-                "{{baseUrl}}api"
-              ],
-              "path": [
-                "admin",
-                "cards",
-                "a5e345da-3c42-4e2b-8bb4-2b9caed9689d"
-              ]
+            {
+              "name": "Patch User Status",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"status\": \"SUSPENDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/users/f215707b-0904-4444-91ea-43eb22fabd66/status",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "users",
+                    "f215707b-0904-4444-91ea-43eb22fabd66",
+                    "status"
+                  ]
+                }
+              },
+              "response": []
             }
-          },
-          "response": []
-        },
-        {
-          "name": "Index Accounts Admin",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{apiToken}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "GET",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "{{baseUrl}}api/admin/accounts",
-              "host": [
-                "{{baseUrl}}api"
-              ],
-              "path": [
-                "admin",
-                "accounts"
-              ]
-            }
-          },
-          "response": []
+          ]
         }
       ]
     }
