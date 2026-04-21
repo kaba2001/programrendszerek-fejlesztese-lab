@@ -35,7 +35,6 @@ public class UserService {
   public UserResponse updateMe(User currentUser, UpdateUserRequest request) {
     if (request.getFirstName() != null) currentUser.setFirstName(request.getFirstName());
     if (request.getLastName() != null) currentUser.setLastName(request.getLastName());
-    if (request.getEmail() != null) currentUser.setEmail(request.getEmail());
     return mapToResponse(repository.save(currentUser));
   }
 
