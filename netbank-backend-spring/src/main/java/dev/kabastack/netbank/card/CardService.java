@@ -69,6 +69,13 @@ public class CardService {
     return mapToResponse(repository.save(card));
   }
 
+  public CardResponse adminUpdateCardLockStatus(UUID cardId, Boolean isLocked) {
+    Card card =
+        repository.findById(cardId).orElseThrow(() -> new RuntimeException("Card not found."));
+    card.setIsLocked(isLocked);
+    return mapToResponse(repository.save(card));
+  }
+
   private Card getCardAndVerifyOwnership(UUID cardId, User user) {
     Card card =
         repository.findById(cardId).orElseThrow(() -> new RuntimeException("Card not found."));

@@ -30,4 +30,10 @@ public class AdminCardController {
     service.deleteCard(id);
     return ResponseEntity.noContent().build();
   }
+
+  @PatchMapping("/{id}/status")
+  public ResponseEntity<CardResponse> updateCardStatus(
+      @PathVariable UUID id, @RequestBody CardStatusRequest request) {
+    return ResponseEntity.ok(service.adminUpdateCardLockStatus(id, request.getIsLocked()));
+  }
 }

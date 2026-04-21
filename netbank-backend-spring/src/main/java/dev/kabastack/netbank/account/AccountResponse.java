@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AccountResponse {
   private UUID id;
+  private UUID userId;
   private String accountNumber;
   private BigDecimal balance;
   private String currency;
