@@ -484,6 +484,93 @@
       ]
     },
     {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "Index Transactions",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/transactions?accountId=29fc1b45-679a-486c-8ee9-31524bbd12cb",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "accountId",
+                  "value": "29fc1b45-679a-486c-8ee9-31524bbd12cb"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send money",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{apiToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"fromAccountId\": \"29fc1b45-679a-486c-8ee9-31524bbd12cb\",\n    \"toAccountNumber\": \"HU09153784034413989829932137\",\n    \"amount\": 300,\n    \"description\": \"Desc\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}api/transactions/send",
+              "host": [
+                "{{baseUrl}}api"
+              ],
+              "path": [
+                "transactions",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "admin",
       "item": [
         {
@@ -921,6 +1008,51 @@
                     "users",
                     "f215707b-0904-4444-91ea-43eb22fabd66",
                     "status"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "transactions",
+          "item": [
+            {
+              "name": "Admin Index Transactions",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{apiToken}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}api/admin/transactions",
+                  "host": [
+                    "{{baseUrl}}api"
+                  ],
+                  "path": [
+                    "admin",
+                    "transactions"
                   ]
                 }
               },
