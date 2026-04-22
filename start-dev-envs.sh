@@ -2,7 +2,7 @@
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TARGET_DIR="$ROOT_DIR"
-FE_PATH=''
+FE_PATH='netbank-frontend-react'
 BE_PATH='netbank-backend-spring'
 SESSIONNAME="netbank-app"
 
@@ -28,29 +28,30 @@ if [ $? != 0 ]; then
     # Split window vertically
     tmux split-window -v -t $SESSIONNAME
 
-    # In second pane (bottom), cd to be and run Django server
     tmux send-keys -t $SESSIONNAME:0.0 "cd $TARGET_DIR/$BE_PATH" C-m
     tmux send-keys -t $SESSIONNAME:0.0 "set -a; source .env; set +a" C-m
     tmux send-keys -t $SESSIONNAME:0.0 "./mvnw spring-boot:run" C-m
 
-    # In first pane (top), cd to fe and run ng serve
-    # tmux send-keys -t $SESSIONNAME:0.1 "cd $TARGET_DIR/$FE_PATH" C-m
-    # tmux send-keys -t $SESSIONNAME:0.1 "ng serve --host $HOST" C-m
+    tmux send-keys -t $SESSIONNAME:0.1 "cd $TARGET_DIR/$FE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:0.1 "npm run dev" C-m
 
     # Back-end editor window
     tmux new-window -n Back-end -t $SESSIONNAME
     tmux send-keys -t $SESSIONNAME:1 "cd $TARGET_DIR/$BE_PATH" C-m
     tmux send-keys -t $SESSIONNAME:1 "nvim ." C-m
 
+    # Front-end editor window
+    tmux new-window -n Fron-end -t $SESSIONNAME
+    tmux send-keys -t $SESSIONNAME:2 "cd $TARGET_DIR/$FE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:2 "nvim ." C-m
 
     tmux new-window -n ClaudeBE -t $SESSIONNAME
-    tmux send-keys -t $SESSIONNAME:2 "cd $TARGET_DIR/$BE_PATH" C-m
-    tmux send-keys -t $SESSIONNAME:2 "claude" C-m
+    tmux send-keys -t $SESSIONNAME:3 "cd $TARGET_DIR/$BE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:3 "claude" C-m
 
-    # Front-end editor window
-    # tmux new-window -n Fron-end -t $SESSIONNAME
-    # tmux send-keys -t $SESSIONNAME:2 "cd $TARGET_DIR/$FE_PATH" C-m
-    # tmux send-keys -t $SESSIONNAME:2 "nvim ." C-m
+    tmux new-window -n ClaudeFE -t $SESSIONNAME
+    tmux send-keys -t $SESSIONNAME:4 "cd $TARGET_DIR/$FE_PATH" C-m
+    tmux send-keys -t $SESSIONNAME:4 "claude" C-m
 
     # Select the first editor window by default
     tmux select-window -t $SESSIONNAME:0
