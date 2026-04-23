@@ -20,6 +20,7 @@ This is a **Refine 5** admin panel for a banking app, built with React 19, React
 ### Key abstraction: Refine
 
 Refine is the central framework. It provides:
+
 - **Resources**: declarative CRUD resource definitions in `App.tsx` (routes, permissions, icons)
 - **Data hooks**: `useDataGrid`, `useForm`, `useMany`, `useAutocomplete` — these call the data provider automatically
 - **Auth hooks**: `useLogin`, `useLogout`, `useGetIdentity` — delegated to the auth provider
@@ -38,6 +39,7 @@ React Router 7 via `@refinedev/react-router`. Routes are generated from resource
 ### Page pattern
 
 Each resource has pages in `src/pages/<resource>/`. The current `blog_posts` / `categories` resources are placeholders — the real resources are `accounts`, `cards`, `contacts`, `transactions`, and `users` (admin). Pattern per resource:
+
 - **list.tsx**: `useDataGrid()` → MUI DataGrid
 - **create.tsx / edit.tsx**: `useForm()` from `@refinedev/react-hook-form` → React Hook Form + MUI fields
 - **show.tsx**: `useShow()` → read-only detail view
@@ -50,29 +52,29 @@ Each resource has pages in `src/pages/<resource>/`. The current `blog_posts` / `
 
 Spring Boot backend at `{{baseUrl}}` (set via `VITE_API_URL`). All endpoints require `Authorization: Bearer <token>` except auth. IDs are UUIDs; account numbers are IBAN format.
 
-| Group | Method | Path | Notes |
-|---|---|---|---|
-| Auth | POST | `/api/auth/login` | `{ email, password }` → JWT token |
-| User | GET | `/api/users/me` | own profile |
-| User | PATCH | `/api/users/me` | `{ firstName, lastName }` |
-| Accounts | GET | `/api/accounts` | own accounts |
-| Accounts | GET | `/api/accounts/:id` | |
-| Cards | GET | `/api/cards` | own cards |
-| Cards | GET | `/api/cards/:id` | |
-| Cards | PATCH | `/api/cards/:id/status` | `{ isLocked: boolean }` |
-| Contacts | GET | `/api/contacts` | |
-| Contacts | GET | `/api/contacts/:id` | |
-| Contacts | POST | `/api/contacts` | `{ partnerName, partnerAccountNumber }` |
-| Contacts | DELETE | `/api/contacts/:id` | |
-| Transactions | GET | `/api/transactions?accountId=:id` | filtered by account |
-| Transactions | POST | `/api/transactions/send` | `{ fromAccountId, toAccountNumber, amount, description }` |
-| Admin — accounts | GET/DELETE | `/api/admin/accounts[/:id]` | |
-| Admin — accounts | PATCH | `/api/admin/accounts/:id/status` | `{ status: "ACTIVE" \| ... }` |
-| Admin — cards | GET/POST/DELETE | `/api/admin/cards[/:id]` | POST: `{ accountId, cardType: "VIRTUAL" }` |
-| Admin — cards | PATCH | `/api/admin/cards/:id/status` | `{ isLocked: boolean }` |
-| Admin — users | GET/DELETE | `/api/admin/users[/:id]` | |
-| Admin — users | PATCH | `/api/admin/users/:id/status` | `{ status: "SUSPENDED" \| ... }` |
-| Admin — transactions | GET | `/api/admin/transactions` | all transactions |
+| Group                | Method          | Path                              | Notes                                                     |
+| -------------------- | --------------- | --------------------------------- | --------------------------------------------------------- |
+| Auth                 | POST            | `/api/auth/login`                 | `{ email, password }` → JWT token                         |
+| User                 | GET             | `/api/users/me`                   | own profile                                               |
+| User                 | PATCH           | `/api/users/me`                   | `{ firstName, lastName }`                                 |
+| Accounts             | GET             | `/api/accounts`                   | own accounts                                              |
+| Accounts             | GET             | `/api/accounts/:id`               |                                                           |
+| Cards                | GET             | `/api/cards`                      | own cards                                                 |
+| Cards                | GET             | `/api/cards/:id`                  |                                                           |
+| Cards                | PATCH           | `/api/cards/:id/status`           | `{ isLocked: boolean }`                                   |
+| Contacts             | GET             | `/api/contacts`                   |                                                           |
+| Contacts             | GET             | `/api/contacts/:id`               |                                                           |
+| Contacts             | POST            | `/api/contacts`                   | `{ partnerName, partnerAccountNumber }`                   |
+| Contacts             | DELETE          | `/api/contacts/:id`               |                                                           |
+| Transactions         | GET             | `/api/transactions?accountId=:id` | filtered by account                                       |
+| Transactions         | POST            | `/api/transactions/send`          | `{ fromAccountId, toAccountNumber, amount, description }` |
+| Admin — accounts     | GET/DELETE      | `/api/admin/accounts[/:id]`       |                                                           |
+| Admin — accounts     | PATCH           | `/api/admin/accounts/:id/status`  | `{ status: "ACTIVE" \| ... }`                             |
+| Admin — cards        | GET/POST/DELETE | `/api/admin/cards[/:id]`          | POST: `{ accountId, cardType: "VIRTUAL" }`                |
+| Admin — cards        | PATCH           | `/api/admin/cards/:id/status`     | `{ isLocked: boolean }`                                   |
+| Admin — users        | GET/DELETE      | `/api/admin/users[/:id]`          |                                                           |
+| Admin — users        | PATCH           | `/api/admin/users/:id/status`     | `{ status: "SUSPENDED" \| ... }`                          |
+| Admin — transactions | GET             | `/api/admin/transactions`         | all transactions                                          |
 
 ## Environment
 
