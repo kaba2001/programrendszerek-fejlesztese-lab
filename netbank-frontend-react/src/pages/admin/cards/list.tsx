@@ -25,7 +25,10 @@ const columns: GridColDef[] = [
 ];
 
 export const AdminCardList = () => {
-  const { dataGridProps } = useDataGrid({ resource: "cards", meta: { dataProviderName: "admin" } });
+  const { dataGridProps } = useDataGrid({
+    resource: "cards",
+    meta: { dataProviderName: "admin" },
+  });
   return (
     <List headerButtons={<CreateButton />}>
       <DataGrid {...dataGridProps} columns={columns} />

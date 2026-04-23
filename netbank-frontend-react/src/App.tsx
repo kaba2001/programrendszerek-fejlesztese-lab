@@ -39,6 +39,7 @@ import { Register } from "./pages/register";
 import { TransactionList } from "./pages/transactions";
 import { authProvider } from "./providers/auth";
 import { adminDataProvider, dataProvider } from "./providers/data";
+import { CustomTitle } from "./components/shared/custom-title";
 
 function App() {
   return (
@@ -50,7 +51,10 @@ function App() {
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
-                dataProvider={{ default: dataProvider, admin: adminDataProvider }}
+                dataProvider={{
+                  default: dataProvider,
+                  admin: adminDataProvider,
+                }}
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
@@ -72,7 +76,11 @@ function App() {
                     list: "/contacts",
                     create: "/contacts/create",
                     show: "/contacts/show/:id",
-                    meta: { icon: <ContactsIcon />, label: "Contacts", canDelete: true },
+                    meta: {
+                      icon: <ContactsIcon />,
+                      label: "Contacts",
+                      canDelete: true,
+                    },
                   },
                   {
                     name: "transactions",
@@ -142,13 +150,16 @@ function App() {
                         key="authenticated-inner"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayout Header={Header}>
+                        <ThemedLayout Header={Header} Title={CustomTitle}>
                           <Outlet />
                         </ThemedLayout>
                       </Authenticated>
                     }
                   >
-                    <Route index element={<NavigateToResource resource="accounts" />} />
+                    <Route
+                      index
+                      element={<NavigateToResource resource="accounts" />}
+                    />
 
                     {/* User routes */}
                     <Route path="/accounts">
@@ -197,7 +208,10 @@ function App() {
                   >
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route
+                      path="/forgot-password"
+                      element={<ForgotPassword />}
+                    />
                   </Route>
                 </Routes>
 

@@ -10,11 +10,17 @@ export const ContactShow = () => {
   return (
     <Show isLoading={isLoading}>
       <Stack gap={2}>
-        <Typography variant="body2" fontWeight="bold">ID</Typography>
+        <Typography variant="body2" fontWeight="bold">
+          ID
+        </Typography>
         <TextField value={record?.id} />
-        <Typography variant="body2" fontWeight="bold">Partner Name</Typography>
+        <Typography variant="body2" fontWeight="bold">
+          Partner Name
+        </Typography>
         <TextField value={record?.partnerName} />
-        <Typography variant="body2" fontWeight="bold">Partner Account Number</Typography>
+        <Typography variant="body2" fontWeight="bold">
+          Partner Account Number
+        </Typography>
         <TextField value={record?.partnerAccountNumber} />
       </Stack>
     </Show>

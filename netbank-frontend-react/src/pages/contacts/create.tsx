@@ -11,7 +11,10 @@ export const ContactCreate = () => {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+      >
         <TextField
           {...register("partnerName", { required: "Name is required" })}
           label="Partner Name"
@@ -20,7 +23,9 @@ export const ContactCreate = () => {
           fullWidth
         />
         <TextField
-          {...register("partnerAccountNumber", { required: "Account number is required" })}
+          {...register("partnerAccountNumber", {
+            required: "Account number is required",
+          })}
           label="Partner Account Number"
           error={!!errors.partnerAccountNumber}
           helperText={errors.partnerAccountNumber?.message as string}

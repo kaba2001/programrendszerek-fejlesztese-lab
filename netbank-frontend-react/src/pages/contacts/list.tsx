@@ -10,7 +10,12 @@ import {
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", flex: 2, minWidth: 300 },
   { field: "partnerName", headerName: "Name", flex: 2, minWidth: 200 },
-  { field: "partnerAccountNumber", headerName: "Account Number", flex: 2, minWidth: 220 },
+  {
+    field: "partnerAccountNumber",
+    headerName: "Account Number",
+    flex: 2,
+    minWidth: 220,
+  },
   {
     field: "actions",
     headerName: "Actions",

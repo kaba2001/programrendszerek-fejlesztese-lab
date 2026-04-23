@@ -20,7 +20,10 @@ const columns: GridColDef[] = [
 ];
 
 export const AdminUserList = () => {
-  const { dataGridProps } = useDataGrid({ resource: "users", meta: { dataProviderName: "admin" } });
+  const { dataGridProps } = useDataGrid({
+    resource: "users",
+    meta: { dataProviderName: "admin" },
+  });
   return (
     <List canCreate={false}>
       <DataGrid {...dataGridProps} columns={columns} />

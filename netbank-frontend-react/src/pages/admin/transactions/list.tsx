@@ -18,12 +18,15 @@ const columns: GridColDef[] = [
     headerName: "Date",
     flex: 1,
     minWidth: 160,
-    renderCell: ({ value }) => value ? <DateField value={value} /> : "-",
+    renderCell: ({ value }) => (value ? <DateField value={value} /> : "-"),
   },
 ];
 
 export const AdminTransactionList = () => {
-  const { dataGridProps } = useDataGrid({ resource: "transactions", meta: { dataProviderName: "admin" } });
+  const { dataGridProps } = useDataGrid({
+    resource: "transactions",
+    meta: { dataProviderName: "admin" },
+  });
   return (
     <List canCreate={false}>
       <DataGrid {...dataGridProps} columns={columns} />

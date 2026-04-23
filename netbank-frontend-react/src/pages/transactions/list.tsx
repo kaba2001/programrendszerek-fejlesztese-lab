@@ -18,7 +18,7 @@ const columns: GridColDef[] = [
     headerName: "Date",
     flex: 1,
     minWidth: 160,
-    renderCell: ({ value }) => value ? <DateField value={value} /> : "-",
+    renderCell: ({ value }) => (value ? <DateField value={value} /> : "-"),
   },
 ];
 

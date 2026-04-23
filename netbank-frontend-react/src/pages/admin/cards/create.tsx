@@ -13,7 +13,10 @@ export const AdminCardCreate = () => {
 
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Box component="form" sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+      <Box
+        component="form"
+        sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+      >
         <TextField
           {...register("accountId", { required: "Account ID is required" })}
           label="Account ID"
