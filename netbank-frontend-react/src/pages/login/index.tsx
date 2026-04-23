@@ -1,4 +1,4 @@
-import { AuthPage } from "@refinedev/mui";
+import { AuthPage } from '@refinedev/mui'
 
 export const Login = () => {
   return (
@@ -6,10 +6,10 @@ export const Login = () => {
       type="login"
       formProps={{
         defaultValues: {
-          email: "admin3@kabastack.dev",
-          password: "password123",
+          email: 'admin3@kabastack.dev',
+          password: 'password123',
         },
       }}
     />
-  );
-};
+  )
+}

@@ -1,1 +1,1 @@
-export { AdminTransactionList } from "./list";
+export { AdminTransactionList } from './list'

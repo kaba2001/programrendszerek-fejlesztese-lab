@@ -1,11 +1,11 @@
-import { Stack, Typography } from "@mui/material";
-import { useShow } from "@refinedev/core";
-import { Show, TextFieldComponent as TextField } from "@refinedev/mui";
+import { Stack, Typography } from '@mui/material'
+import { useShow } from '@refinedev/core'
+import { Show, TextFieldComponent as TextField } from '@refinedev/mui'
 
 export const ContactShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const { query } = useShow()
+  const { data, isLoading } = query
+  const record = data?.data
 
   return (
     <Show isLoading={isLoading}>
@@ -24,5 +24,5 @@ export const ContactShow = () => {
         <TextField value={record?.partnerAccountNumber} />
       </Stack>
     </Show>
-  );
-};
+  )
+}

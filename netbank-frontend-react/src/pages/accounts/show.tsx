@@ -1,15 +1,15 @@
-import { Stack, Typography } from "@mui/material";
-import { useShow } from "@refinedev/core";
+import { Stack, Typography } from '@mui/material'
+import { useShow } from '@refinedev/core'
 import {
   NumberField,
   Show,
   TextFieldComponent as TextField,
-} from "@refinedev/mui";
+} from '@refinedev/mui'
 
 export const AccountShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const { query } = useShow()
+  const { data, isLoading } = query
+  const record = data?.data
 
   return (
     <Show isLoading={isLoading}>
@@ -25,7 +25,7 @@ export const AccountShow = () => {
         <Typography variant="body2" fontWeight="bold">
           Balance
         </Typography>
-        <NumberField value={record?.balance ?? ""} />
+        <NumberField value={record?.balance ?? ''} />
         <Typography variant="body2" fontWeight="bold">
           Currency
         </Typography>
@@ -36,5 +36,5 @@ export const AccountShow = () => {
         <TextField value={record?.status} />
       </Stack>
     </Show>
-  );
-};
+  )
+}

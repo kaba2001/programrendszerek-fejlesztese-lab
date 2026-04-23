@@ -1,2 +1,2 @@
-export { CardList } from "./list";
-export { CardShow } from "./show";
+export { CardList } from './list'
+export { CardShow } from './show'

@@ -1,7 +1,7 @@
-import { Box, MenuItem, TextField } from "@mui/material";
-import { Create } from "@refinedev/mui";
-import { useForm } from "@refinedev/react-hook-form";
-import { Controller } from "react-hook-form";
+import { Box, MenuItem, TextField } from '@mui/material'
+import { Create } from '@refinedev/mui'
+import { useForm } from '@refinedev/react-hook-form'
+import { Controller } from 'react-hook-form'
 
 export const AdminCardCreate = () => {
   const {
@@ -9,16 +9,16 @@ export const AdminCardCreate = () => {
     register,
     control,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
   return (
     <Create saveButtonProps={saveButtonProps}>
       <Box
         component="form"
-        sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
       >
         <TextField
-          {...register("accountId", { required: "Account ID is required" })}
+          {...register('accountId', { required: 'Account ID is required' })}
           label="Account ID"
           error={!!errors.accountId}
           helperText={errors.accountId?.message as string}
@@ -27,7 +27,7 @@ export const AdminCardCreate = () => {
         <Controller
           name="cardType"
           control={control}
-          rules={{ required: "Card type is required" }}
+          rules={{ required: 'Card type is required' }}
           render={({ field }) => (
             <TextField
               {...field}
@@ -44,5 +44,5 @@ export const AdminCardCreate = () => {
         />
       </Box>
     </Create>
-  );
-};
+  )
+}

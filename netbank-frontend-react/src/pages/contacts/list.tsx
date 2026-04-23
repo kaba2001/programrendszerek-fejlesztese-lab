@@ -1,29 +1,29 @@
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from '@mui/x-data-grid'
 import {
   CreateButton,
   DeleteButton,
   List,
   ShowButton,
   useDataGrid,
-} from "@refinedev/mui";
+} from '@refinedev/mui'
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", flex: 2, minWidth: 300 },
-  { field: "partnerName", headerName: "Name", flex: 2, minWidth: 200 },
+  { field: 'id', headerName: 'ID', flex: 2, minWidth: 300 },
+  { field: 'partnerName', headerName: 'Name', flex: 2, minWidth: 200 },
   {
-    field: "partnerAccountNumber",
-    headerName: "Account Number",
+    field: 'partnerAccountNumber',
+    headerName: 'Account Number',
     flex: 2,
     minWidth: 220,
   },
   {
-    field: "actions",
-    headerName: "Actions",
+    field: 'actions',
+    headerName: 'Actions',
     sortable: false,
     minWidth: 120,
-    display: "flex",
-    align: "right",
-    headerAlign: "right",
+    display: 'flex',
+    align: 'right',
+    headerAlign: 'right',
     renderCell: ({ row }) => (
       <>
         <ShowButton hideText recordItemId={row.id} />
@@ -31,13 +31,13 @@ const columns: GridColDef[] = [
       </>
     ),
   },
-];
+]
 
 export const ContactList = () => {
-  const { dataGridProps } = useDataGrid({});
+  const { dataGridProps } = useDataGrid({})
   return (
     <List headerButtons={<CreateButton />}>
       <DataGrid {...dataGridProps} columns={columns} />
     </List>
-  );
-};
+  )
+}

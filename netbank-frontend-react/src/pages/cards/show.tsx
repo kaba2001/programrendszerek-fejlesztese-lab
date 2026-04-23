@@ -1,15 +1,15 @@
-import { Stack, Typography } from "@mui/material";
-import { useShow } from "@refinedev/core";
+import { Stack, Typography } from '@mui/material'
+import { useShow } from '@refinedev/core'
 import {
   BooleanField,
   Show,
   TextFieldComponent as TextField,
-} from "@refinedev/mui";
+} from '@refinedev/mui'
 
 export const CardShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const { query } = useShow()
+  const { data, isLoading } = query
+  const record = data?.data
 
   return (
     <Show isLoading={isLoading}>
@@ -32,5 +32,5 @@ export const CardShow = () => {
         <TextField value={record?.accountId} />
       </Stack>
     </Show>
-  );
-};
+  )
+}

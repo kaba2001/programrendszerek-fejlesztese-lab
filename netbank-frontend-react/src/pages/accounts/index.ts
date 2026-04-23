@@ -1,2 +1,2 @@
-export { AccountList } from "./list";
-export { AccountShow } from "./show";
+export { AccountList } from './list'
+export { AccountShow } from './show'

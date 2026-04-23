@@ -1,45 +1,45 @@
-import { Authenticated, Refine } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
+import { Authenticated, Refine } from '@refinedev/core'
+import { DevtoolsPanel, DevtoolsProvider } from '@refinedev/devtools'
+import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar'
 
 import {
   ErrorComponent,
   RefineSnackbarProvider,
   ThemedLayout,
   useNotificationProvider,
-} from "@refinedev/mui";
+} from '@refinedev/mui'
 
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import PeopleIcon from "@mui/icons-material/People";
-import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
-import CssBaseline from "@mui/material/CssBaseline";
-import GlobalStyles from "@mui/material/GlobalStyles";
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance'
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings'
+import ContactsIcon from '@mui/icons-material/Contacts'
+import CreditCardIcon from '@mui/icons-material/CreditCard'
+import PeopleIcon from '@mui/icons-material/People'
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz'
+import CssBaseline from '@mui/material/CssBaseline'
+import GlobalStyles from '@mui/material/GlobalStyles'
 import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { Header } from "./components/header";
-import { ColorModeContextProvider } from "./contexts/color-mode";
-import { AccountList, AccountShow } from "./pages/accounts";
-import { AdminAccountList } from "./pages/admin/accounts";
-import { AdminCardCreate, AdminCardList } from "./pages/admin/cards";
-import { AdminTransactionList } from "./pages/admin/transactions";
-import { AdminUserList } from "./pages/admin/users";
-import { CardList, CardShow } from "./pages/cards";
-import { ContactCreate, ContactList, ContactShow } from "./pages/contacts";
-import { ForgotPassword } from "./pages/forgotPassword";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { TransactionList } from "./pages/transactions";
-import { authProvider } from "./providers/auth";
-import { adminDataProvider, dataProvider } from "./providers/data";
-import { CustomTitle } from "./components/shared/custom-title";
+} from '@refinedev/react-router'
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router'
+import { Header } from './components/header'
+import { ColorModeContextProvider } from './contexts/color-mode'
+import { AccountList, AccountShow } from './pages/accounts'
+import { AdminAccountList } from './pages/admin/accounts'
+import { AdminCardCreate, AdminCardList } from './pages/admin/cards'
+import { AdminTransactionList } from './pages/admin/transactions'
+import { AdminUserList } from './pages/admin/users'
+import { CardList, CardShow } from './pages/cards'
+import { ContactCreate, ContactList, ContactShow } from './pages/contacts'
+import { ForgotPassword } from './pages/forgotPassword'
+import { Login } from './pages/login'
+import { Register } from './pages/register'
+import { TransactionList } from './pages/transactions'
+import { authProvider } from './providers/auth'
+import { adminDataProvider, dataProvider } from './providers/data'
+import { CustomTitle } from './components/shared/custom-title'
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
+          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
           <RefineSnackbarProvider>
             <DevtoolsProvider>
               <Refine
@@ -60,87 +60,87 @@ function App() {
                 authProvider={authProvider}
                 resources={[
                   {
-                    name: "accounts",
-                    list: "/accounts",
-                    show: "/accounts/show/:id",
-                    meta: { icon: <AccountBalanceIcon />, label: "Accounts" },
+                    name: 'accounts',
+                    list: '/accounts',
+                    show: '/accounts/show/:id',
+                    meta: { icon: <AccountBalanceIcon />, label: 'Accounts' },
                   },
                   {
-                    name: "cards",
-                    list: "/cards",
-                    show: "/cards/show/:id",
-                    meta: { icon: <CreditCardIcon />, label: "Cards" },
+                    name: 'cards',
+                    list: '/cards',
+                    show: '/cards/show/:id',
+                    meta: { icon: <CreditCardIcon />, label: 'Cards' },
                   },
                   {
-                    name: "contacts",
-                    list: "/contacts",
-                    create: "/contacts/create",
-                    show: "/contacts/show/:id",
+                    name: 'contacts',
+                    list: '/contacts',
+                    create: '/contacts/create',
+                    show: '/contacts/show/:id',
                     meta: {
                       icon: <ContactsIcon />,
-                      label: "Contacts",
+                      label: 'Contacts',
                       canDelete: true,
                     },
                   },
                   {
-                    name: "transactions",
-                    list: "/transactions",
-                    meta: { icon: <SwapHorizIcon />, label: "Transactions" },
+                    name: 'transactions',
+                    list: '/transactions',
+                    meta: { icon: <SwapHorizIcon />, label: 'Transactions' },
                   },
                   {
-                    name: "admin",
-                    meta: { icon: <AdminPanelSettingsIcon />, label: "Admin" },
+                    name: 'admin',
+                    meta: { icon: <AdminPanelSettingsIcon />, label: 'Admin' },
                   },
                   {
-                    name: "accounts",
-                    identifier: "adminAccounts",
-                    list: "/admin/accounts",
+                    name: 'accounts',
+                    identifier: 'adminAccounts',
+                    list: '/admin/accounts',
                     meta: {
-                      dataProviderName: "admin",
-                      parent: "admin",
-                      label: "Accounts",
+                      dataProviderName: 'admin',
+                      parent: 'admin',
+                      label: 'Accounts',
                       canDelete: true,
                     },
                   },
                   {
-                    name: "cards",
-                    identifier: "adminCards",
-                    list: "/admin/cards",
-                    create: "/admin/cards/create",
+                    name: 'cards',
+                    identifier: 'adminCards',
+                    list: '/admin/cards',
+                    create: '/admin/cards/create',
                     meta: {
-                      dataProviderName: "admin",
-                      parent: "admin",
-                      label: "Cards",
+                      dataProviderName: 'admin',
+                      parent: 'admin',
+                      label: 'Cards',
                       canDelete: true,
                     },
                   },
                   {
-                    name: "users",
-                    identifier: "adminUsers",
-                    list: "/admin/users",
+                    name: 'users',
+                    identifier: 'adminUsers',
+                    list: '/admin/users',
                     meta: {
-                      dataProviderName: "admin",
-                      parent: "admin",
-                      label: "Users",
+                      dataProviderName: 'admin',
+                      parent: 'admin',
+                      label: 'Users',
                       icon: <PeopleIcon />,
                       canDelete: true,
                     },
                   },
                   {
-                    name: "transactions",
-                    identifier: "adminTransactions",
-                    list: "/admin/transactions",
+                    name: 'transactions',
+                    identifier: 'adminTransactions',
+                    list: '/admin/transactions',
                     meta: {
-                      dataProviderName: "admin",
-                      parent: "admin",
-                      label: "Transactions",
+                      dataProviderName: 'admin',
+                      parent: 'admin',
+                      label: 'Transactions',
                     },
                   },
                 ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
-                  projectId: "uzOqa5-quDnZP-8ALR9U",
+                  projectId: 'uzOqa5-quDnZP-8ALR9U',
                 }}
               >
                 <Routes>
@@ -225,7 +225,7 @@ function App() {
         </ColorModeContextProvider>
       </RefineKbarProvider>
     </BrowserRouter>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,8 +1,8 @@
-import {DataGrid, type GridColDef} from '@mui/x-data-grid'
-import {DeleteButton, List, useDataGrid} from '@refinedev/mui'
+import { DataGrid, type GridColDef } from '@mui/x-data-grid'
+import { DeleteButton, List, useDataGrid } from '@refinedev/mui'
 
 const columns: GridColDef[] = [
-  {field: 'id', headerName: 'ID', flex: 2, minWidth: 300},
+  { field: 'id', headerName: 'ID', flex: 2, minWidth: 300 },
   {
     field: 'accountNumber',
     headerName: 'Account Number',
@@ -16,8 +16,8 @@ const columns: GridColDef[] = [
     flex: 1,
     minWidth: 120,
   },
-  {field: 'currency', headerName: 'Currency', flex: 1, minWidth: 100},
-  {field: 'status', headerName: 'Status', flex: 1, minWidth: 100},
+  { field: 'currency', headerName: 'Currency', flex: 1, minWidth: 100 },
+  { field: 'status', headerName: 'Status', flex: 1, minWidth: 100 },
   {
     field: 'actions',
     headerName: 'Actions',
@@ -26,14 +26,14 @@ const columns: GridColDef[] = [
     display: 'flex',
     align: 'right',
     headerAlign: 'right',
-    renderCell: ({row}) => <DeleteButton hideText recordItemId={row.id} />,
+    renderCell: ({ row }) => <DeleteButton hideText recordItemId={row.id} />,
   },
 ]
 
 export const AdminAccountList = () => {
-  const {dataGridProps} = useDataGrid({
+  const { dataGridProps } = useDataGrid({
     resource: 'admin/accounts',
-    meta: {dataProviderName: 'admin'},
+    meta: { dataProviderName: 'admin' },
   })
   return (
     <List canCreate={false}>
