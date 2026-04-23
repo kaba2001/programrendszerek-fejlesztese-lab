@@ -58,6 +58,15 @@ function App() {
                 notificationProvider={useNotificationProvider}
                 routerProvider={routerProvider}
                 authProvider={authProvider}
+                accessControlProvider={{
+                  can: async ({ resource }) => {
+                    const role = await authProvider.getPermissions?.()
+                    if (resource?.startsWith('admin') && role !== 'ADMIN') {
+                      return { can: false }
+                    }
+                    return { can: true }
+                  },
+                }}
                 resources={[
                   {
                     name: 'accounts',

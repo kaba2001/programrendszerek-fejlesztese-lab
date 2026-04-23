@@ -1,5 +1,5 @@
 import type { AuthProvider } from '@refinedev/core'
-import { API_URL, TOKEN_KEY } from './constants'
+import { API_URL, ROLE_KEY, TOKEN_KEY } from './constants'
 
 export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
@@ -37,6 +37,7 @@ export const authProvider: AuthProvider = {
 
   logout: async () => {
     localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem(ROLE_KEY)
     return { success: true, redirectTo: '/login' }
   },
 
@@ -48,7 +49,7 @@ export const authProvider: AuthProvider = {
     return { authenticated: false, redirectTo: '/login' }
   },
 
-  getPermissions: async () => null,
+  getPermissions: async () => localStorage.getItem(ROLE_KEY),
 
   getIdentity: async () => {
     const token = localStorage.getItem(TOKEN_KEY)
@@ -62,6 +63,7 @@ export const authProvider: AuthProvider = {
       if (!response.ok) return null
 
       const user = await response.json()
+      localStorage.setItem(ROLE_KEY, user.role)
       return {
         id: user.id,
         name: `${user.firstName} ${user.lastName}`,
