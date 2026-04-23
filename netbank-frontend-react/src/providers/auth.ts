@@ -4,7 +4,7 @@ import { API_URL, TOKEN_KEY } from "./constants";
 export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     try {
-      const response = await fetch(`${API_URL}/api/auth/login`, {
+      const response = await fetch(`${API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -55,7 +55,7 @@ export const authProvider: AuthProvider = {
     if (!token) return null;
 
     try {
-      const response = await fetch(`${API_URL}/api/users/me`, {
+      const response = await fetch(`${API_URL}/users/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
