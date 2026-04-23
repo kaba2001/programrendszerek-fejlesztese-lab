@@ -11,6 +11,21 @@ const kyOptions = {
         }
       },
     ],
+    afterResponse: [
+      async (_request: Request, _options: any, response: Response) => {
+        if (response.ok) {
+          const text = await response.clone().text()
+
+          if (!text) {
+            return new Response(JSON.stringify({}), {
+              status: 200,
+              headers: response.headers,
+            })
+          }
+        }
+        return response
+      },
+    ],
   },
 }
 
