@@ -18,15 +18,20 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
   private final JwtAuthenticationFilter jwtAuthFilter;
+  private final JwtAuthenticationEntryPoint authenticationEntryPoint;
 
-  public SecurityConfig(JwtAuthenticationFilter jwtAuthFilter) {
+  public SecurityConfig(
+      JwtAuthenticationFilter jwtAuthFilter,
+      JwtAuthenticationEntryPoint authenticationEntryPoint) {
     this.jwtAuthFilter = jwtAuthFilter;
+    this.authenticationEntryPoint = authenticationEntryPoint;
   }
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http.csrf(AbstractHttpConfigurer::disable)
         .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        .exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
         .authorizeHttpRequests(
             auth ->
                 auth.requestMatchers("/api/auth/**")
