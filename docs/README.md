@@ -14,7 +14,7 @@ A backend fejlesztéséhez **Java** nyelvet és **Spring Boot 4.0** keretrendsze
 
 **Indoklás:**
 
-A mindennapos munkám során főként **Laravel** (PHP) alapú REST API-kat fejlesztek. A PHP egy interpretált, dinamikusan típusos szkriptnyelv, amelynek megvannak a maga előnyei (gyors prototipizálás, rugalmasság), azonban statikus típusellenőrzést és fordítási fázist nem biztosít. Ezt a projektet tudatosan arra szántam, hogy megismerkedjek egy statikusan típusos, fordított nyelvre épülő enterprise keretrendszerrel.
+A mindennapos munkám során főként **Laravel** (PHP) alapú REST API-kat fejlesztek, azonban egy netbanki rendszerhez nem PHP az elsődleges technológiai választás. Egy pénzügyi alkalmazásnál kiemelt szempont az erős típusosság, a fordítási idejű hibakezelés és az enterprise szintű eszköztár – ezek mind olyan területek, ahol a Java és a Spring Boot lényegesen jobb alapot nyújt, mint egy interpretált szkriptnyelv. A projekt egyben lehetőséget adott arra is, hogy mélyebben megismerkedjek egy ilyen környezettel.
 
 A **Java + Spring Boot** kombináció mellett a következő szempontok szóltak:
 
