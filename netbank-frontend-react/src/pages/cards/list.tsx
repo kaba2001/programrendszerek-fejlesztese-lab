@@ -27,7 +27,7 @@ export const CardList = () => {
   const { dataGridProps } = useDataGrid({})
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} />
+      <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
     </List>
   )
 }

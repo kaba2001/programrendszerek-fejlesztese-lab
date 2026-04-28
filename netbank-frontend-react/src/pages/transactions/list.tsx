@@ -188,7 +188,7 @@ export const TransactionList = () => {
           </Select>
         </FormControl>
         {accountId ? (
-          <DataGrid {...dataGridProps} columns={columns} />
+          <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
         ) : (
           <Box
             sx={{

@@ -37,7 +37,7 @@ export const ContactList = () => {
   const { dataGridProps } = useDataGrid({})
   return (
     <List headerButtons={<CreateButton />}>
-      <DataGrid {...dataGridProps} columns={columns} />
+      <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
     </List>
   )
 }

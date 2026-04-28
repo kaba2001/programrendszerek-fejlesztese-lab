@@ -26,7 +26,7 @@ export const AdminUserList = () => {
   })
   return (
     <List canCreate={false}>
-      <DataGrid {...dataGridProps} columns={columns} />
+      <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
     </List>
   )
 }

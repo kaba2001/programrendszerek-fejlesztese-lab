@@ -34,7 +34,7 @@ export const AccountList = () => {
   const { dataGridProps } = useDataGrid({})
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} />
+      <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
     </List>
   )
 }
