@@ -1,11 +1,11 @@
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
 import {
   CreateButton,
-  DeleteButton,
   List,
   ShowButton,
   useDataGrid,
 } from '@refinedev/mui'
+import { RefreshDeleteButton } from '../../components/shared/delete-button'
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', flex: 2, minWidth: 300 },
@@ -27,7 +27,7 @@ const columns: GridColDef[] = [
     renderCell: ({ row }) => (
       <>
         <ShowButton hideText recordItemId={row.id} />
-        <DeleteButton hideText recordItemId={row.id} />
+        <RefreshDeleteButton hideText recordItemId={row.id} />
       </>
     ),
   },

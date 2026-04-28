@@ -1,7 +1,8 @@
 import { useNotification } from '@refinedev/core'
 import { useQueryClient } from '@tanstack/react-query'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
-import { CreateButton, DeleteButton, List, useDataGrid } from '@refinedev/mui'
+import { CreateButton, List, useDataGrid } from '@refinedev/mui'
+import { RefreshDeleteButton } from '../../../components/shared/delete-button'
 import IconButton from '@mui/material/IconButton'
 import LockIcon from '@mui/icons-material/Lock'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
@@ -82,7 +83,7 @@ const columns: GridColDef[] = [
     renderCell: ({ row }) => (
       <>
         <LockToggleButton id={row.id} isLocked={row.isLocked} />
-        <DeleteButton hideText recordItemId={row.id} />
+        <RefreshDeleteButton hideText recordItemId={row.id} />
       </>
     ),
   },

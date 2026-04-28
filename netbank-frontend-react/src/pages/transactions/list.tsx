@@ -1,4 +1,5 @@
-import { useInvalidate, useList, useNotification } from '@refinedev/core'
+import { useList, useNotification } from '@refinedev/core'
+import { useQueryClient } from '@tanstack/react-query'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
 import { DateField, List, NumberField, useDataGrid } from '@refinedev/mui'
 import Alert from '@mui/material/Alert'
@@ -20,27 +21,6 @@ import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { kyInstance } from '../../providers/data'
-
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', flex: 2, minWidth: 300 },
-  {
-    field: 'amount',
-    headerName: 'Amount',
-    flex: 1,
-    minWidth: 120,
-    renderCell: ({ value }) => <NumberField value={value ?? ''} />,
-  },
-  { field: 'description', headerName: 'Description', flex: 2, minWidth: 200 },
-  { field: 'fromAccountId', headerName: 'From', flex: 2, minWidth: 300 },
-  { field: 'toAccountNumber', headerName: 'To', flex: 2, minWidth: 220 },
-  {
-    field: 'createdAt',
-    headerName: 'Date',
-    flex: 1,
-    minWidth: 160,
-    renderCell: ({ value }) => (value ? <DateField value={value} /> : '-'),
-  },
-]
 
 type SendFormValues = {
   fromAccountId: string
@@ -65,7 +45,38 @@ export const TransactionList = () => {
   const { query: contactsQuery } = useList({ resource: 'contacts' })
   const contacts = contactsQuery.data?.data ?? []
 
-  const invalidate = useInvalidate()
+  const queryClient = useQueryClient()
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', flex: 2, minWidth: 300 },
+    {
+      field: 'amount',
+      headerName: 'Amount',
+      flex: 1,
+      minWidth: 120,
+      renderCell: ({ value }) => <NumberField value={value ?? ''} />,
+    },
+    { field: 'transactionType', headerName: 'Type', flex: 1, minWidth: 100 },
+    { field: 'status', headerName: 'Status', flex: 1, minWidth: 120 },
+    {
+      field: 'partnerAccountNumber',
+      headerName: 'Partner',
+      flex: 2,
+      minWidth: 200,
+      renderCell: ({ value }) => {
+        const contact = contacts.find((c) => c.partnerAccountNumber === value)
+        return contact ? contact.partnerName : value
+      },
+    },
+    { field: 'description', headerName: 'Description', flex: 2, minWidth: 200 },
+    {
+      field: 'createdAt',
+      headerName: 'Date',
+      flex: 1,
+      minWidth: 160,
+      renderCell: ({ value }) => (value ? <DateField value={value} /> : '-'),
+    },
+  ]
 
   const { dataGridProps } = useDataGrid({
     filters: {
@@ -137,7 +148,7 @@ export const TransactionList = () => {
         .json()
 
       setDialogOpen(false)
-      invalidate({ resource: 'transactions', invalidates: ['list'] })
+      await queryClient.invalidateQueries()
       notify?.({
         type: 'success',
         message: 'Transaction sent successfully',
@@ -173,20 +184,35 @@ export const TransactionList = () => {
           ) : undefined
         }
       >
-        <FormControl sx={{ mb: 2, minWidth: 300 }}>
-          <InputLabel>Account</InputLabel>
-          <Select
-            value={accountId}
-            label="Account"
-            onChange={(e) => setAccountId(e.target.value)}
-          >
-            {accounts.map((account) => (
-              <MenuItem key={account.id} value={account.id}>
-                {account.accountNumber} ({account.currency})
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3, mb: 2 }}>
+          <FormControl sx={{ minWidth: 300 }}>
+            <InputLabel>Account</InputLabel>
+            <Select
+              value={accountId}
+              label="Account"
+              onChange={(e) => setAccountId(e.target.value)}
+            >
+              {accounts.map((account) => (
+                <MenuItem key={account.id} value={account.id}>
+                  {account.accountNumber} ({account.currency})
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {(() => {
+            const selected = accounts.find((a) => a.id === accountId)
+            return selected ? (
+              <Box>
+                <Typography variant="caption" color="text.secondary">
+                  Balance
+                </Typography>
+                <Typography variant="h6" fontWeight="bold">
+                  {selected.balance} {selected.currency}
+                </Typography>
+              </Box>
+            ) : null
+          })()}
+        </Box>
         {accountId ? (
           <DataGrid {...dataGridProps} columns={columns} disableColumnSorting hideFooter />
         ) : (

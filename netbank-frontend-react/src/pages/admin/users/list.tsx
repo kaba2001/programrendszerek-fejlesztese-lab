@@ -1,7 +1,8 @@
 import { useNotification } from '@refinedev/core'
 import { useQueryClient } from '@tanstack/react-query'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
-import { DeleteButton, List, useDataGrid } from '@refinedev/mui'
+import { List, useDataGrid } from '@refinedev/mui'
+import { RefreshDeleteButton } from '../../../components/shared/delete-button'
 import IconButton from '@mui/material/IconButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ManageAccountsOutlined from '@mui/icons-material/ManageAccountsOutlined'
@@ -108,7 +109,7 @@ const columns: GridColDef[] = [
     renderCell: ({ row }) => (
       <>
         <StatusChangeButton id={row.id} currentStatus={row.status} />
-        <DeleteButton hideText recordItemId={row.id} />
+        <RefreshDeleteButton hideText recordItemId={row.id} />
       </>
     ),
   },
