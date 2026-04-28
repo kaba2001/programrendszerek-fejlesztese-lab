@@ -67,6 +67,8 @@ export const authProvider: AuthProvider = {
       return {
         id: user.id,
         name: `${user.firstName} ${user.lastName}`,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         avatar: `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}`,
       }
