@@ -38,6 +38,41 @@ bash start-dev-envs.sh ln
 
 Spring Boot 3 REST API backed by PostgreSQL, secured with stateless JWT authentication.
 
+### PostgreSQL Setup
+
+**Install PostgreSQL:**
+
+```bash
+# Arch Linux
+sudo pacman -S postgresql
+
+# Ubuntu / Debian
+sudo apt install postgresql
+```
+
+**Initialize and start the service (Linux only):**
+
+```bash
+# First-time init (Arch only — skip on Ubuntu/Debian, it's done automatically)
+sudo -u postgres initdb -D /var/lib/postgres/data
+
+sudo systemctl enable --now postgresql
+```
+
+**Create a database user and database:**
+
+```bash
+sudo -u postgres psql
+```
+
+Inside the `psql` shell:
+
+```sql
+CREATE USER netbank_user WITH PASSWORD 'your_password';
+CREATE DATABASE netbank_spring OWNER netbank_user;
+\q
+```
+
 ### Setup
 
 ```bash
