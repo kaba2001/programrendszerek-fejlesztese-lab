@@ -78,6 +78,8 @@ dev.kabastack.netbank/
 
 Layered design: `Controller → Service → Repository`. Services own all business logic and authorization checks.
 
+Full API documentation is available as a Postman collection at `documentations/NetbankAppSpring.postman_collection.json`. Import it into Postman and set the `baseUrl` and `apiToken` collection variables to get started.
+
 **Security:** stateless JWT (HMAC-SHA256 via JJWT 0.12.6). Routes:
 - `/api/auth/**` — public
 - `/api/admin/**` — `ADMIN` role only
