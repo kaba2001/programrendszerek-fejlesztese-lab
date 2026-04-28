@@ -23,6 +23,14 @@ export const authProvider: AuthProvider = {
       const data = await response.json()
       localStorage.setItem(TOKEN_KEY, data.token)
 
+      const meResponse = await fetch(`${API_URL}/users/me`, {
+        headers: { Authorization: `Bearer ${data.token}` },
+      })
+      if (meResponse.ok) {
+        const user = await meResponse.json()
+        localStorage.setItem(ROLE_KEY, user.role)
+      }
+
       return { success: true, redirectTo: '/' }
     } catch {
       return {
