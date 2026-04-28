@@ -973,45 +973,6 @@
                 }
               },
               "response": []
-            },
-            {
-              "name": "Patch User Status Copy",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value": "{{apiToken}}",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PATCH",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"status\": \"SUSPENDED\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}api/admin/users/f215707b-0904-4444-91ea-43eb22fabd66/status",
-                  "host": [
-                    "{{baseUrl}}api"
-                  ],
-                  "path": [
-                    "admin",
-                    "users",
-                    "f215707b-0904-4444-91ea-43eb22fabd66",
-                    "status"
-                  ]
-                }
-              },
-              "response": []
             }
           ]
         },

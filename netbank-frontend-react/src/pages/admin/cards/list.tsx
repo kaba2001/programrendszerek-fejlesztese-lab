@@ -1,4 +1,5 @@
-import { useInvalidate, useNotification } from '@refinedev/core'
+import { useNotification } from '@refinedev/core'
+import { useQueryClient } from '@tanstack/react-query'
 import { DataGrid, type GridColDef } from '@mui/x-data-grid'
 import { CreateButton, DeleteButton, List, useDataGrid } from '@refinedev/mui'
 import IconButton from '@mui/material/IconButton'
@@ -16,7 +17,7 @@ const LockToggleButton = ({
 }) => {
   const [loading, setLoading] = useState(false)
   const { open: notify } = useNotification()
-  const invalidate = useInvalidate()
+  const queryClient = useQueryClient()
 
   const toggle = async () => {
     setLoading(true)
@@ -28,7 +29,7 @@ const LockToggleButton = ({
         type: 'success',
         message: `Card ${!isLocked ? 'locked' : 'unlocked'} successfully`,
       })
-      invalidate({ resource: 'admin/cards', invalidates: ['list'] })
+      await queryClient.invalidateQueries()
     } catch (err: unknown) {
       const httpErr = err as { response?: Response }
       let message = 'Failed to update card status'

@@ -6,6 +6,7 @@ import {
   Show,
   TextFieldComponent as TextField,
 } from '@refinedev/mui'
+import { useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { kyInstance } from '../../providers/data'
 
@@ -15,6 +16,7 @@ export const CardShow = () => {
   const record = data?.data
   const [toggling, setToggling] = useState(false)
   const { open: notify } = useNotification()
+  const queryClient = useQueryClient()
 
   const toggleLock = async () => {
     if (!record) return
@@ -25,7 +27,7 @@ export const CardShow = () => {
           json: { isLocked: !record.isLocked },
         })
         .json()
-      await query.refetch()
+      await queryClient.invalidateQueries()
       notify?.({
         type: 'success',
         message: `Card ${!record.isLocked ? 'locked' : 'unlocked'} successfully`,
