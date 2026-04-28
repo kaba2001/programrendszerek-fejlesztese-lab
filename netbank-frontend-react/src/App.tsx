@@ -147,7 +147,7 @@ function App() {
                   },
                 ]}
                 options={{
-                  syncWithLocation: true,
+                  syncWithLocation: false,
                   warnWhenUnsavedChanges: true,
                   projectId: 'uzOqa5-quDnZP-8ALR9U',
                 }}
