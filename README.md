@@ -98,6 +98,25 @@ bash make.sh                    # Scaffold a new feature
 bash clear-db.sh                # Drop and recreate the database
 ```
 
+### Seeded accounts
+
+On first run the database is automatically populated with seed data. Use these credentials to log in:
+
+**Admin**
+```
+email:    admin@kabastack.dev
+password: password123
+```
+
+**Normal user** — pick any user from the `users` table and log in with:
+```
+password: password
+```
+
+```sql
+SELECT email FROM users WHERE role = 'USER' LIMIT 1;
+```
+
 ### Architecture
 
 ```
